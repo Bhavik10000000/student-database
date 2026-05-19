@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 const API_URL = "https://student-management-backend-production-e28a.up.railway.app/api/students";
 function Project() {
-  
-  const [students, setStudents] = useState([]); 
+
+  const [students, setStudents] = useState([]);
 
   // This runs once when the page loads
   useEffect(() => {
@@ -14,124 +14,124 @@ function Project() {
   const fetchStudents = async () => {
     try {
       const response = await axios.get(API_URL);
-      setStudents(response.data); 
+      setStudents(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
   const [student, setStudent] = useState({
-  firstName: "",
-  lastName: "",
-  email: "",
-  course: "",
-  phone: "",
-  address: ""
-});
+    firstName: "",
+    lastName: "",
+    email: "",
+    course: "",
+    phone: "",
+    address: ""
+  });
   const saveStudent = async () => {
-  try {
-    if (editId) {
-      // UPDATE: Send data to backend
-      await axios.put(`${API_URL}/${editId}`, student);
-    } else {
-      // CREATE: Send data to backend
-      await axios.post(API_URL, student);
+    try {
+      if (editId) {
+        // UPDATE: Send data to backend
+        await axios.put(`${API_URL}/${editId}`, student);
+      } else {
+        // CREATE: Send data to backend
+        await axios.post(API_URL, student);
+      }
+      fetchStudents(); // Refresh the list from the DB
+      setEditId(null);
+      setStudent({ firstName: "", lastName: "", email: "", course: "", phone: "", address: "" });
+    } catch (error) {
+      alert("Error saving student. Check if backend is running!");
     }
-    fetchStudents(); // Refresh the list from the DB
-    setEditId(null);
-    setStudent({ firstName: "", lastName: "", email: "", course: "", phone: "", address: "" });
-  } catch (error) {
-    alert("Error saving student. Check if backend is running!");
-  }
-};
+  };
 
 
   const deleteStudent = async (id) => {
-  if (window.confirm(`Are you sure you want to delete student with ID: ${id}?`)) {
-    try {
-      // 1. Send the delete request to the Backend
-      await axios.delete(`${API_URL}/${id}`);
-      
-      // 2. Refresh the table from the Database
-      fetchStudents(); 
-      alert("Student deleted successfully!");
-    } catch (error) {
-      console.error("Delete Error:", error);
-      alert("Could not delete. Make sure the backend is running and CORS is enabled.");
+    if (window.confirm(`Are you sure you want to delete student with ID: ${id}?`)) {
+      try {
+        // 1. Send the delete request to the Backend
+        await axios.delete(`${API_URL}/${id}`);
+
+        // 2. Refresh the table from the Database
+        fetchStudents();
+        alert("Student deleted successfully!");
+      } catch (error) {
+        console.error("Delete Error:", error);
+        alert("Could not delete. Make sure the backend is running and CORS is enabled.");
+      }
     }
-  }
-};
+  };
 
 
   const [editId, setEditId] = useState(null);
 
   const editStudent = (studentObj) => {
-  setStudent({
-    firstName: studentObj.firstName,
-    lastName: studentObj.lastName,
-    email: studentObj.email,
-    course: studentObj.course,
-    phone: studentObj.phone,
-    address: studentObj.address
-  });
-  setEditId(studentObj.id); 
-};
+    setStudent({
+      firstName: studentObj.firstName,
+      lastName: studentObj.lastName,
+      email: studentObj.email,
+      course: studentObj.course,
+      phone: studentObj.phone,
+      address: studentObj.address
+    });
+    setEditId(studentObj.id);
+  };
 
-  
+
 
 
   return (
     <>
       <div className='project-page'>
         {/* <h1>Student Database</h1> */}
-        <br></br>
-      <div className='project-cont'>
-       <h1>Student Database Table</h1>
-        <table>
-          <thead>
-            <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Course</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-            {students.map((student) => (
-              <tr key={student.id}>
-              <td>{student.id}</td>
-              <td>{student.firstName}</td>
-              <td>{student.lastName}</td>
-              <td>{student.email}</td>
-              <td>{student.course}</td>
-              <td>{student.phone}</td>
-              <td>{student.address}</td>
-              <td className='btn-both'><button className='btn-upd' onClick={() => editStudent(student)}>Update</button>
-              <button className='btn-del' onClick={() => deleteStudent(student.id)}>Delete</button></td>
-            </tr>
-            ) )}
-          </tbody>
-        </table>
-        
+        {/* <br></br> */}
+        <div className='project-cont'>
+          <h1>Student Database Table</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {students.map((student) => (
+                <tr key={student.id}>
+                  <td>{student.id}</td>
+                  <td>{student.firstName}</td>
+                  <td>{student.lastName}</td>
+                  <td>{student.email}</td>
+                  <td>{student.course}</td>
+                  <td>{student.phone}</td>
+                  <td>{student.address}</td>
+                  <td className='btn-both'><button className='btn-upd' onClick={() => editStudent(student)}>Update</button>
+                    <button className='btn-del' onClick={() => deleteStudent(student.id)}>Delete</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
         </div>
         <br></br>
         <div className='project-add'>
-          <input type="text" placeholder="  First Name" value={student.firstName} onChange={(e) => setStudent({...student, firstName: e.target.value})}/>
-          <input type="text" placeholder="  Last Name" value={student.lastName} onChange={(e) => setStudent({...student, lastName: e.target.value})}/>
-          <input type="text" placeholder="  Email" value={student.email} onChange={(e) => setStudent({...student, email: e.target.value})}/>
-          <input type="text" placeholder="  Course" value={student.course} onChange={(e) => setStudent({...student, course: e.target.value})}/>
-          <input type="number" placeholder="  Phone" value={student.phone} onChange={(e) => setStudent({...student, phone: e.target.value})}/>
-          <input type="text" placeholder="  Address" value={student.address} onChange={(e) => setStudent({...student, address: e.target.value})}/>
+          <input type="text" placeholder="  First Name" value={student.firstName} onChange={(e) => setStudent({ ...student, firstName: e.target.value })} />
+          <input type="text" placeholder="  Last Name" value={student.lastName} onChange={(e) => setStudent({ ...student, lastName: e.target.value })} />
+          <input type="text" placeholder="  Email" value={student.email} onChange={(e) => setStudent({ ...student, email: e.target.value })} />
+          <input type="text" placeholder="  Course" value={student.course} onChange={(e) => setStudent({ ...student, course: e.target.value })} />
+          <input type="number" placeholder="  Phone" value={student.phone} onChange={(e) => setStudent({ ...student, phone: e.target.value })} />
+          <input type="text" placeholder="  Address" value={student.address} onChange={(e) => setStudent({ ...student, address: e.target.value })} />
           <button className='project-add-btn' onClick={saveStudent}>{editId ? "Save" : "Add"}</button>
-        
+
         </div>
-        
-        </div>
+
+      </div>
     </>
   );
 }
