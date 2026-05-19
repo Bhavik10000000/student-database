@@ -1,0 +1,52 @@
+import './App.css';
+
+import prachi from './prachi.png';
+import bhavik from './bhavik.png';
+import sachin from './sachin.png';
+
+function Home() {
+  return (
+    <>
+      <div className='home-page'>
+        <div className="hero-section">
+        <h1>Student Database Management System</h1>
+        </div>
+        <div className='ops'>
+          <h2>Operations : </h2>
+          <div className='ops-grid'>
+          <div className="op-item"><strong>Create:</strong> Add new student data.</div>
+          <div className="op-item"><strong>Read:</strong> Display students data.</div>
+          <div className="op-item"><strong>Update:</strong> Change student data.</div>
+          <div className="op-item"><strong>Delete:</strong> Remove student.</div>
+      </div>
+        </div>
+        <div className="dev-sec">
+          <h2>Developed by : </h2>
+          <div className='dev-cont'>
+
+          <div className='dev-card'>
+            <img src={bhavik} width="100" alt="Bhavik Sapat" />
+            <h3>Bhavik Sapat</h3>
+            <h4 className='hfour'> Frontend (React Js)</h4>
+          </div>
+          
+          <div className='dev-card'>
+            <img src={prachi} width="100" alt="Sachin Gupta" />
+            <h3>Prachi Katkar</h3>
+            <h4 className='hfour'> Backend (SpringBoot)</h4>
+          </div>
+
+          <div className='dev-card'>
+            <img src={sachin} width="100" alt="Sachin Gupta" />
+            <h3>Sachin Gupta</h3>
+            <h4 className='hfour'> Backend (SpringBoot)</h4>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Home;
