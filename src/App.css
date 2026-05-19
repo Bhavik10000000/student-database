@@ -1,8 +1,134 @@
+/* --- Global & Reset Styles --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('./background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Keeps the paper texture still while you scroll */
+  min-height: 100vh;
+  /* scrollbar-width: 00; */
+  overflow-x: none;
+  overflow-y: auto;
+}
+
+#root, .App {
+  min-height: 100vh;
+}
+.dev-card img {
+  object-fit: cover;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%; /* Makes them circular */
+  /* border: 2px solid #fff; Optional: adds a nice ring around the photo */
+}
 .App {
   text-align: center;
-  background-color: rgb(0, 0, 0);
-} 
+}
 
+/* --- Navigation --- */
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 80px;
+  background-color: #000000;
+  padding: 15px 30px;
+  border-radius: 50px;
+  margin: 15px 25px;
+  text-align: center;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+/* --- Page Containers --- */
+.home-page, .project-page {
+  width: 100%;
+  max-width: 1200px; /* Optional: keeps text from getting too wide on huge monitors */
+  margin: 0 auto;
+  background: transparent; 
+}
+
+.home-page {
+  max-width: 1000px;
+  margin: 0 auto; /* This centers the container on large screens */
+  padding: 0px;
+  text-align: center; /* Centers the headings like "Operations" and "Developed by" */
+}
+
+/* --- Operations Section --- */
+.ops {
+  padding: 1px;
+}
+
+.ops-grid {
+  display: grid;
+  /* This creates 2 columns on desktop and 1 on mobile automatically */
+  grid-template-columns: repeat(2, minmax(300px, 2fr)); 
+  gap: 10px;
+  margin: 10px 0;
+  padding: 20px;
+}
+
+.op-item {
+  /* background: #f9f9f9; */
+  padding: 20px;
+  border-radius: 15px;
+  /* border: 1px solid #eee; */
+  text-align: center; /* Keeps the description text readable */
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+}
+
+.hfour {
+  text-align: center;
+}
+
+/* --- Developer Section --- */
+.dev-cont {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+  margin-top: 30px;
+  gap: 30px;
+  justify-content: center;
+}
+
+.dev-card {
+  /* border: 1px  gray solid ; */
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  justify-content: center;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+}
+
+.dev-card h3 {
+  margin: 15px 0 5px 1px; 
+  white-space: nowrap;  
+}
+
+.dev-card img {
+  object-fit: cover;
+  width: 80px;
+  height: 80px;
+}
+
+/* --- React Default Styles --- */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -37,91 +163,88 @@
     transform: rotate(360deg);
   }
 }
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 80px;
-  background-color: #000000;
-  padding: 15px 30px;
-  border-radius: 50px;
-  margin: 15px 5px;
-  text-align: center;
-  justify-content: center;
-}
 
-nav a {
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-}  
-
-.dev-cont {
-  display: flex;
-  flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
-  margin-top: 30px;
-  gap: 30px;
-  justify-content: center;
-}
-
-.dev-card {
-  border: 1px solid #ddd;
-  border-radius: 15px;
-  padding: 20px;
-  width: 250px; 
-  display: flex;
-  flex-direction: column;
-  align-items: center;    
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.dev-card h3 {
-  margin: 15px 0 5px 0; 
-  white-space: nowrap;  
-}
-
-.dev-card img{
-  object-fit:cover;
-  width: 80px;
-  height: 80px;
-}
-
-.home-page {
-  max-width: 1000px;
-  margin: 0 auto; /* This centers the container on large screens */
-  padding: 0px;
-  text-align: center; /* Centers the headings like "Operations" and "Developed by" */
-}
-.ops-grid {
-  display: grid;
-  /* This creates 2 columns on desktop and 1 on mobile automatically */
-  grid-template-columns: repeat(2, minmax(300px, 2fr)); 
-  gap: 10px;
-  margin: 10px 0;
-  /* max-width:800px; */
-}
+/* --- Mobile Responsiveness --- */
 @media (max-width: 600px) {
   .ops-grid {
     grid-template-columns: 1fr; /* Stacks to 1 column on small screens */
   }
 }
-.op-item {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  text-align: center; /* Keeps the description text readable */
+.project-page{
+  padding: 20px;
+  text-align: center;
+  
+}
+.project-add{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 2fr)); 
+  gap: 10px;
+  margin: 5px 0;
+  padding: 20px;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+}
+.project-add-btn{
+  background-color: rgb(177, 177, 177) ;
+  padding:4px;
+  gap:5px;
+  margin: 7px 0px;
+  width:100px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 7px;
+  background-color: #cacaca;
+  border: 0.1px rgb(0, 0, 0) solid;
 }
 
-.ops {
-  padding:1px;
+.btn-del{
+  background-color: rgb(255, 155, 155) ;
+  padding:4px;
+  gap:1px;
+  /* margin: 1px 0px; */
+  display: flex;
+  width:60px;
+  font-weight: 400;
+  border-radius: 3px;
+  border: 0.1px rgb(255, 0, 0) solid;
 }
 
-.hfour {
-  text-align:center;
+.btn-upd{
+  background-color: rgb(161, 186, 255) ;
+  padding:4px;
+  gap:1px;
+  /* margin: 7px 0px; */
+  
+  width:60px;
+  font-weight: 400;
+  border-radius: 3px;
+  border: 0.1px rgb(0, 68, 255) solid;
 }
 
-/* .op-item:hover {
-  transform: translateY(-3px);
-  border-color: #000;
-} */
+.project-add input{
+ padding:4px;
+  border-radius: 7px;
+  border: none;
+  background-color: #ffffff;
+ 
+}
+
+.project-cont{
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  justify-content: center;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+}
+
+table{
+  width:100%;
+  border-collapse: collapse;
+  margin:10px 0;
+  font-family: sans-serif;
+}

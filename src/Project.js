@@ -77,13 +77,16 @@ function Project() {
   setEditId(studentObj.id); 
 };
 
+  
+
 
   return (
     <>
-      <div className="project-container">
+      <div className='project-page'>
         <h1>Student Database</h1>
+        <br></br>
+      <div className='project-cont'>
        
-        <hr/>
         <table>
           <thead>
             <tr>
@@ -108,25 +111,26 @@ function Project() {
               <td>{student.course}</td>
               <td>{student.phone}</td>
               <td>{student.address}</td>
-              <td><button onClick={() => editStudent(student)}>Update</button></td>
-              <td><button onClick={() => deleteStudent(student.id)}>Delete</button></td>
+              <td><button className='btn-upd' onClick={() => editStudent(student)}>Update</button></td>
+              <td><button className='btn-del' onClick={() => deleteStudent(student.id)}>Delete</button></td>
             </tr>
             ) )}
           </tbody>
         </table>
-        <hr/>
-        <br/>
         
-        <div>
-          <input type="text" placeholder="First Name" value={student.firstName} onChange={(e) => setStudent({...student, firstName: e.target.value})}/>
-          <input type="text" placeholder="Last Name" value={student.lastName} onChange={(e) => setStudent({...student, lastName: e.target.value})}/>
-          <input type="text" placeholder="Email" value={student.email} onChange={(e) => setStudent({...student, email: e.target.value})}/>
-          <input type="text" placeholder="Course" value={student.course} onChange={(e) => setStudent({...student, course: e.target.value})}/>
-          <input type="number" placeholder="Phone" value={student.phone} onChange={(e) => setStudent({...student, phone: e.target.value})}/>
-          <input type="text" placeholder="First Address" value={student.address} onChange={(e) => setStudent({...student, address: e.target.value})}/>
-          
         </div>
-        <button onClick={saveStudent}>{editId ? "Save" : "Add"}</button>
+        <br></br>
+        <div className='project-add'>
+          <input type="text" placeholder="  First Name" value={student.firstName} onChange={(e) => setStudent({...student, firstName: e.target.value})}/>
+          <input type="text" placeholder="  Last Name" value={student.lastName} onChange={(e) => setStudent({...student, lastName: e.target.value})}/>
+          <input type="text" placeholder="  Email" value={student.email} onChange={(e) => setStudent({...student, email: e.target.value})}/>
+          <input type="text" placeholder="  Course" value={student.course} onChange={(e) => setStudent({...student, course: e.target.value})}/>
+          <input type="number" placeholder="  Phone" value={student.phone} onChange={(e) => setStudent({...student, phone: e.target.value})}/>
+          <input type="text" placeholder="  Address" value={student.address} onChange={(e) => setStudent({...student, address: e.target.value})}/>
+          <button className='project-add-btn' onClick={saveStudent}>{editId ? "Save" : "Add"}</button>
+        
+        </div>
+        
         </div>
     </>
   );

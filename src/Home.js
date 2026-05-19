@@ -11,13 +11,14 @@ function Home() {
         <div className="hero-section">
         <h1>Student Database Management System</h1>
         </div>
+        <div><br/></div>
         <div className='ops'>
           <h2>Operations : </h2>
           <div className='ops-grid'>
-          <div className="op-item"><strong>Create:</strong> Add new student data.</div>
-          <div className="op-item"><strong>Read:</strong> Display students data.</div>
-          <div className="op-item"><strong>Update:</strong> Change student data.</div>
-          <div className="op-item"><strong>Delete:</strong> Remove student.</div>
+          <div className="op-item"><strong>Create:</strong><br/> Used to add a new student.</div>
+          <div className="op-item"><strong>Read:</strong><br/> Used to display all students data.</div>
+          <div className="op-item"><strong>Update:</strong><br/> Used to change student data.</div>
+          <div className="op-item"><strong>Delete:</strong><br/> Used to remove student data.</div>
       </div>
         </div>
         <div className="dev-sec">
