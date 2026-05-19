@@ -83,10 +83,10 @@ function Project() {
   return (
     <>
       <div className='project-page'>
-        <h1>Student Database</h1>
+        {/* <h1>Student Database</h1> */}
         <br></br>
       <div className='project-cont'>
-       
+       <h1>Student Database Table</h1>
         <table>
           <thead>
             <tr>
@@ -111,8 +111,8 @@ function Project() {
               <td>{student.course}</td>
               <td>{student.phone}</td>
               <td>{student.address}</td>
-              <td><button className='btn-upd' onClick={() => editStudent(student)}>Update</button></td>
-              <td><button className='btn-del' onClick={() => deleteStudent(student.id)}>Delete</button></td>
+              <td className='btn-both'><button className='btn-upd' onClick={() => editStudent(student)}>Update</button>
+              <button className='btn-del' onClick={() => deleteStudent(student.id)}>Delete</button></td>
             </tr>
             ) )}
           </tbody>
