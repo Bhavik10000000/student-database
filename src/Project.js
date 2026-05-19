@@ -4,7 +4,7 @@ import axios from 'axios';
 const API_URL = "https://student-management-backend-production-e28a.up.railway.app/api/students";
 function Project() {
   
-  const [students, setStudents] = useState([]); // Start with an empty list!
+  const [students, setStudents] = useState([]); 
 
   // This runs once when the page loads
   useEffect(() => {
@@ -14,7 +14,7 @@ function Project() {
   const fetchStudents = async () => {
     try {
       const response = await axios.get(API_URL);
-      setStudents(response.data); // This fills your table with DB data
+      setStudents(response.data); 
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -66,7 +66,6 @@ function Project() {
   const [editId, setEditId] = useState(null);
 
   const editStudent = (studentObj) => {
-  // Filling the form with the object received from the Database
   setStudent({
     firstName: studentObj.firstName,
     lastName: studentObj.lastName,
@@ -75,18 +74,15 @@ function Project() {
     phone: studentObj.phone,
     address: studentObj.address
   });
-  setEditId(studentObj.id); // Storing the database ID to use in the PUT request
+  setEditId(studentObj.id); 
 };
 
 
-  const [isTableVisible, setIsTableVisible] = useState(false); 
   return (
     <>
       <div className="project-container">
         <h1>Student Database</h1>
-      {/* <h2>Table : {2+2}</h2> */}
-      {/* <button onClick={() => setIsTableVisible(!isTableVisible)}>{isTableVisible ? "Hide" : "Show"}</button> */}
-        
+       
         <hr/>
         <table>
           <thead>
