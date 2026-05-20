@@ -34,11 +34,22 @@ function Project() {
   };
 
   const saveStudent = async () => {
-    if (!/^\d{10}$/.test(student.phone)) {
-    alert("Phone number must contain exactly 10 digits.");
+    
+if (
+  !student.firstName ||
+  !student.lastName ||
+  !student.email ||
+  !student.course ||
+  !student.phone ||
+  !student.address
+) {
+  alert("Please fill all fields.");
+  return;
+}
+if (!/^\d{10}$/.test(student.phone)) {
+    alert("Phone Number number must contain exactly 10 digits.");
     return;
   }
-
     try {
       if (editId) {
         await axios.put(`${API_URL}/${editId}`, student);
@@ -59,6 +70,8 @@ function Project() {
         phone: "",
         address: ""
       });
+
+      
 
     } catch (error) {
       alert("Error saving student.");
@@ -209,7 +222,7 @@ function Project() {
 
           <input
             type="number"
-            placeholder=" Phone"
+            placeholder=" phone"
             value={student.phone}
             onChange={(e) =>
               setStudent({ ...student, phone: e.target.value })
@@ -241,9 +254,9 @@ function Project() {
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Course</th>
-                <th>Phone</th>
+                <th>Contact</th>
                 <th>Address</th>
-                <th>Operation</th>
+                <th>Operation </th>
               </tr>
             </thead>
 
@@ -297,77 +310,6 @@ function Project() {
           </table>
 
         </div>
-
-        <br />
-
-        {/* <div className='project-add'>
-
-          <input
-            type="text"
-            placeholder=" First Name"
-            value={student.firstName}
-            onChange={(e) =>
-              setStudent({ ...student, firstName: e.target.value })
-            }
-          />
-
-          <input
-            type="text"
-            placeholder=" Last Name"
-            value={student.lastName}
-            onChange={(e) =>
-              setStudent({ ...student, lastName: e.target.value })
-            }
-          />
-
-          <input
-            type="text"
-            placeholder=" Email"
-            value={student.email}
-            onChange={(e) =>
-              setStudent({ ...student, email: e.target.value })
-            }
-          />
-
-          <select
-            className={student.course === "" ? "placeholder-active" : ""}
-            value={student.course}
-            onChange={(e) => setStudent({ ...student, course: e.target.value })}
-          >
-            <option value="" disabled hidden>Select Course</option>
-            <option value="ReactJS">ReactJS</option>
-            <option value="SpringBoot">SpringBoot</option>
-            <option value="PowerBI">PowerBI</option>
-          </select>
-
-
-          <input
-            type="number"
-            placeholder=" Phone"
-            value={student.phone}
-            onChange={(e) =>
-              setStudent({ ...student, phone: e.target.value })
-            }
-          />
-
-          <input
-            type="text"
-            placeholder=" Address"
-            value={student.address}
-            onChange={(e) =>
-              setStudent({ ...student, address: e.target.value })
-            }
-          />
-
-          <button
-            className='project-add-btn'
-            onClick={saveStudent}
-          >
-            {editId ? "Save" : "Add"}
-          </button>
-
-        </div> */}
-
       </div>
     </>
   );
