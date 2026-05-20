@@ -116,6 +116,7 @@ nav a{
   border-radius: 15px;
   padding: 8px 20px;
   min-height: 350px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -194,12 +195,14 @@ nav a{
 
 .project-add{
   display: grid;
-  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  grid-template-columns: repeat(7, minmax(100px, 1fr));
   gap: 10px;
-  padding: 20px;
-  border-radius: 15px;
+  padding: 5px;
+  border-radius: 10px;
   box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(3px);
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  /* border-color: 1px black solid; */
 }
 .placeholder-active {
   color: #6a6a6a;
@@ -212,15 +215,17 @@ option.select {
   color: #6a6a6a;
 }
 .project-add input,
-.project-add select{
-  padding: 7px;
+.project-add select,
+.top-bar-both{
+  padding: 5px;
   border-radius: 7px;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.4);
   border: none;
   background-color: white;
 }
 
 .project-add-btn{
-  grid-column: 3;
+  grid-column: 7;
   justify-self: end;
   background-color: #cacaca;
   width: 110px;
@@ -228,7 +233,7 @@ option.select {
   border-radius: 7px;
   cursor: pointer;
 
-  padding: 7px;
+  padding: 5px;
   border-radius: 7px;
   border: 1px green solid;
   color:green;
@@ -241,6 +246,7 @@ table{
   border-spacing: 0;
   border: 1px solid #333;
   border-radius: 12px;
+  margin-bottom: 10px;
   overflow: hidden;
 }
 

@@ -34,6 +34,11 @@ function Project() {
   };
 
   const saveStudent = async () => {
+    if (!/^\d{10}$/.test(student.phone)) {
+    alert("Phone number must contain exactly 10 digits.");
+    return;
+  }
+
     try {
       if (editId) {
         await axios.put(`${API_URL}/${editId}`, student);
@@ -95,8 +100,8 @@ function Project() {
           <h1>Student Database Table</h1>
 
           <div className='top-bar'>
-
-<div className='filter-box' style={{ position: 'relative' }}>              <button className='search-btn-icon'>☰</button>
+              <div>
+              <div className='filter-box' style={{ position: 'relative' }}>              <button className='search-btn-icon'>☰</button>
               <button
                 className='search-btn'
                 onClick={() => setShowDropdown(!showDropdown)}
@@ -148,6 +153,7 @@ function Project() {
                 </div>
               )}
             </div>
+            </div>
 
             <div className='search-box'>
               <button className='search-btn-icon'>🔍</button>
@@ -159,77 +165,8 @@ function Project() {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-
           </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Course</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-
-              {students
-                .filter((s) => {
-
-                  const matchesSearch = Object.values(s)
-                    .join(" ")
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase());
-
-                  const matchesFilter =
-                    filterCourse === "" || s.course === filterCourse;
-
-                  return matchesSearch && matchesFilter;
-                })
-
-                .map((student) => (
-                  <tr key={student.id}>
-                    <td>{student.id}</td>
-                    <td>{student.firstName}</td>
-                    <td>{student.lastName}</td>
-                    <td>{student.email}</td>
-                    <td>{student.course}</td>
-                    <td>{student.phone}</td>
-                    <td>{student.address}</td>
-
-                    <td className='btn-both'>
-
-                      <button
-                        className='btn-upd'
-                        onClick={() => editStudent(student)}
-                      >
-                        Update
-                      </button>
-
-                      <button
-                        className='btn-del'
-                        onClick={() => deleteStudent(student.id)}
-                      >
-                        Delete
-                      </button>
-
-                    </td>
-                  </tr>
-                ))}
-
-            </tbody>
-          </table>
-
-        </div>
-
-        <br />
-
-        <div className='project-add'>
+          <div className='project-add'>
 
           <input
             type="text"
@@ -296,6 +233,140 @@ function Project() {
           </button>
 
         </div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Operation</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              {students
+                .filter((s) => {
+
+                  const matchesSearch = Object.values(s)
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase());
+
+                  const matchesFilter =
+                    filterCourse === "" || s.course === filterCourse;
+
+                  return matchesSearch && matchesFilter;
+                })
+
+                .map((student) => (
+                  <tr key={student.id}>
+                    <td>{student.id}</td>
+                    <td>{student.firstName}</td>
+                    <td>{student.lastName}</td>
+                    <td>{student.email}</td>
+                    <td>{student.course}</td>
+                    <td>{student.phone}</td>
+                    <td>{student.address}</td>
+
+                    <td className='btn-both'>
+
+                      <button
+                        className='btn-upd'
+                        onClick={() => editStudent(student)}
+                      >
+                        Update
+                      </button>
+
+                      <button
+                        className='btn-del'
+                        onClick={() => deleteStudent(student.id)}
+                      >
+                        Delete
+                      </button>
+
+                    </td>
+                  </tr>
+                ))}
+
+            </tbody>
+          </table>
+
+        </div>
+
+        <br />
+
+        {/* <div className='project-add'>
+
+          <input
+            type="text"
+            placeholder=" First Name"
+            value={student.firstName}
+            onChange={(e) =>
+              setStudent({ ...student, firstName: e.target.value })
+            }
+          />
+
+          <input
+            type="text"
+            placeholder=" Last Name"
+            value={student.lastName}
+            onChange={(e) =>
+              setStudent({ ...student, lastName: e.target.value })
+            }
+          />
+
+          <input
+            type="text"
+            placeholder=" Email"
+            value={student.email}
+            onChange={(e) =>
+              setStudent({ ...student, email: e.target.value })
+            }
+          />
+
+          <select
+            className={student.course === "" ? "placeholder-active" : ""}
+            value={student.course}
+            onChange={(e) => setStudent({ ...student, course: e.target.value })}
+          >
+            <option value="" disabled hidden>Select Course</option>
+            <option value="ReactJS">ReactJS</option>
+            <option value="SpringBoot">SpringBoot</option>
+            <option value="PowerBI">PowerBI</option>
+          </select>
+
+
+          <input
+            type="number"
+            placeholder=" Phone"
+            value={student.phone}
+            onChange={(e) =>
+              setStudent({ ...student, phone: e.target.value })
+            }
+          />
+
+          <input
+            type="text"
+            placeholder=" Address"
+            value={student.address}
+            onChange={(e) =>
+              setStudent({ ...student, address: e.target.value })
+            }
+          />
+
+          <button
+            className='project-add-btn'
+            onClick={saveStudent}
+          >
+            {editId ? "Save" : "Add"}
+          </button>
+
+        </div> */}
 
       </div>
     </>
