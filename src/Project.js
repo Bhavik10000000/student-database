@@ -96,7 +96,7 @@ function Project() {
 
           <div className='top-bar'>
 
-            <div style={{ position: 'relative' }}>
+<div className='filter-box' style={{ position: 'relative' }}>              <button className='search-btn-icon'>☰</button>
               <button
                 className='search-btn'
                 onClick={() => setShowDropdown(!showDropdown)}
@@ -150,6 +150,7 @@ function Project() {
             </div>
 
             <div className='search-box'>
+              <button className='search-btn-icon'>🔍</button>
               <input
                 className='project-add-search'
                 type="text"
@@ -232,7 +233,7 @@ function Project() {
 
           <input
             type="text"
-            placeholder="First Name"
+            placeholder=" First Name"
             value={student.firstName}
             onChange={(e) =>
               setStudent({ ...student, firstName: e.target.value })
@@ -241,7 +242,7 @@ function Project() {
 
           <input
             type="text"
-            placeholder="Last Name"
+            placeholder=" Last Name"
             value={student.lastName}
             onChange={(e) =>
               setStudent({ ...student, lastName: e.target.value })
@@ -250,7 +251,7 @@ function Project() {
 
           <input
             type="text"
-            placeholder="Email"
+            placeholder=" Email"
             value={student.email}
             onChange={(e) =>
               setStudent({ ...student, email: e.target.value })
@@ -258,20 +259,20 @@ function Project() {
           />
 
           <select
+            className={student.course === "" ? "placeholder-active" : ""}
             value={student.course}
-            onChange={(e) =>
-              setStudent({ ...student, course: e.target.value })
-            }
+            onChange={(e) => setStudent({ ...student, course: e.target.value })}
           >
-            <option value="">Select Course</option>
+            <option value="" disabled hidden>Select Course</option>
             <option value="ReactJS">ReactJS</option>
             <option value="SpringBoot">SpringBoot</option>
             <option value="PowerBI">PowerBI</option>
           </select>
 
+
           <input
             type="number"
-            placeholder="Phone"
+            placeholder=" Phone"
             value={student.phone}
             onChange={(e) =>
               setStudent({ ...student, phone: e.target.value })
@@ -280,7 +281,7 @@ function Project() {
 
           <input
             type="text"
-            placeholder="Address"
+            placeholder=" Address"
             value={student.address}
             onChange={(e) =>
               setStudent({ ...student, address: e.target.value })
