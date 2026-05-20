@@ -16,7 +16,7 @@ function Project() {
     lastName: "",
     email: "",
     course: "",
-    phone: "",
+    phoneNumber: "",
     address: ""
   });
 
@@ -40,14 +40,14 @@ if (
   !student.lastName ||
   !student.email ||
   !student.course ||
-  !student.phone ||
+  !student.phoneNumber ||
   !student.address
 ) {
   alert("Please fill all fields.");
   return;
 }
-if (!/^\d{10}$/.test(student.phone)) {
-    alert("Phone Number number must contain exactly 10 digits.");
+if (!/^\d{10}$/.test(student.phoneNumber)) {
+    alert("phoneNumber Number number must contain exactly 10 digits.");
     return;
   }
     try {
@@ -67,7 +67,7 @@ if (!/^\d{10}$/.test(student.phone)) {
         lastName: "",
         email: "",
         course: "",
-        phone: "",
+        phoneNumber: "",
         address: ""
       });
 
@@ -97,7 +97,7 @@ if (!/^\d{10}$/.test(student.phone)) {
       lastName: studentObj.lastName,
       email: studentObj.email,
       course: studentObj.course,
-      phone: studentObj.phone,
+      phoneNumber: studentObj.phoneNumber,
       address: studentObj.address
     });
 
@@ -222,10 +222,10 @@ if (!/^\d{10}$/.test(student.phone)) {
 
           <input
             type="number"
-            placeholder=" phone"
-            value={student.phone}
+            placeholder=" phoneNumber"
+            value={student.phoneNumber}
             onChange={(e) =>
-              setStudent({ ...student, phone: e.target.value })
+              setStudent({ ...student, phoneNumber: e.target.value })
             }
           />
 
@@ -283,7 +283,7 @@ if (!/^\d{10}$/.test(student.phone)) {
                     <td>{student.lastName}</td>
                     <td>{student.email}</td>
                     <td>{student.course}</td>
-                    <td>{student.phone}</td>
+                    <td>{student.phoneNumber}</td>
                     <td>{student.address}</td>
 
                     <td className='btn-both'>
