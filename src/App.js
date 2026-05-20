@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import Home from './Home';
 import Project from './Project';
 import { Routes, Route } from 'react-router-dom'; // Added Route here
-
+import Animation from "./Animation";
 function App() {
   return (
     <><Navbar />
@@ -12,6 +12,8 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} /> 
           <Route path="/project" element={<Project />} /> 
+          <Route path="/animation" element={<Animation />} /> 
+              
       </Routes>
     </div>
     </>
